@@ -4,27 +4,33 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Float, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
+class SRGBTextureLoader extends THREE.TextureLoader {
+  load(url, onLoad, onProgress, onError) {
+    return super.load(
+      url,
+      (texture) => {
+        texture.colorSpace = THREE.SRGBColorSpace;
+        onLoad?.(texture);
+      },
+      onProgress,
+      onError
+    );
+  }
+}
+
 function ThreeDLogo() {
   const group = useRef();
-  const texture = useLoader(THREE.TextureLoader, "/logo.png");
+  const texture = useLoader(SRGBTextureLoader, "/logo.png");
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (!group.current) return;
     group.current.rotation.y += delta * 0.1;
   });
 
-  const logoTexture = texture.clone();
-  logoTexture.colorSpace = THREE.SRGBColorSpace;
-
   return (
     <group ref={group}>
-      <Float
-        speed={1.6}
-        floatIntensity={0.25}
-        rotationIntensity={0.1}
-      >
+      <Float speed={1.6} floatIntensity={0.25} rotationIntensity={0.1}>
         <group rotation={[0, 0, 0]}>
-          {/* Metallic 3D body */}
           <mesh rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[1.4, 1.4, 0.18, 96]} />
             <meshPhysicalMaterial
@@ -36,47 +42,39 @@ function ThreeDLogo() {
             />
           </mesh>
 
-          {/* Front logo */}
           <mesh position={[0, 0, 0.095]}>
             <circleGeometry args={[1.37, 96]} />
             <meshBasicMaterial
-              map={logoTexture}
+              map={texture}
               transparent
               side={THREE.FrontSide}
               toneMapped={false}
             />
           </mesh>
 
-          {/* Back logo */}
           <mesh
             position={[0, 0, -0.095]}
             rotation={[0, Math.PI, 0]}
           >
             <circleGeometry args={[1.37, 96]} />
             <meshBasicMaterial
-              map={logoTexture}
+              map={texture}
               transparent
               side={THREE.FrontSide}
               toneMapped={false}
             />
           </mesh>
 
-          {/* Outer glowing edge */}
           <mesh rotation={[Math.PI / 2, 0, 0]}>
             <torusGeometry args={[1.405, 0.025, 12, 120]} />
             <meshBasicMaterial color="#40b9ff" />
           </mesh>
 
-          {/* Back glowing edge */}
-          <mesh
-            position={[0, 0, -0.09]}
-            rotation={[0, 0, 0]}
-          >
+          <mesh position={[0, 0, -0.09]}>
             <torusGeometry args={[1.405, 0.025, 12, 120]} />
             <meshBasicMaterial color="#40b9ff" />
           </mesh>
 
-          {/* Front glowing edge */}
           <mesh position={[0, 0, 0.09]}>
             <torusGeometry args={[1.405, 0.025, 12, 120]} />
             <meshBasicMaterial color="#40b9ff" />
@@ -219,7 +217,7 @@ export default function Hero3D() {
 
       <Canvas
         camera={{ position: [0, 0, 7.5], fov: 45 }}
-        dpr={[1, 1.5]}
+        dpr={[1, 1.25]}
         gl={{
           alpha: true,
           antialias: true,

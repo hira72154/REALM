@@ -1,4 +1,4 @@
-
+﻿
 import {
   Rocket,
   Globe2,
@@ -12,9 +12,17 @@ import {
   PageIntro,
   CTA,
   FeatureCard,
-} from "./shared";
+} from "./Shared";
+
+import usePageMeta from "../usePageMeta";
 
 export default function About() {
+  usePageMeta({
+    title: "About THE REALM | Technology & Innovation",
+    description:
+      "Learn about THE REALM, a technology-focused initiative exploring artificial intelligence, automation and web development through collaboration and practical digital solutions.",
+  });
+
   return (
     <>
       <PageIntro

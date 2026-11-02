@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail } from "lucide-react";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -59,8 +61,7 @@ export default function Footer() {
 
       <div className="container footer-bottom">
         <span>
-          © {new Date().getFullYear()} THE REALM.
-          All rights reserved.
+          © {CURRENT_YEAR} THE REALM. All rights reserved.
         </span>
 
         <span>Designed to Grow Together.</span>

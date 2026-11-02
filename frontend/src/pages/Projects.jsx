@@ -1,11 +1,12 @@
-
+﻿
 import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
 
-import { PageIntro } from "./shared";
+import { PageIntro } from "./Shared";
+import usePageMeta from "../usePageMeta";
 
 const projects = [
   {
@@ -149,9 +150,13 @@ const filters = [
 ];
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] =
-    useState("ALL");
+  usePageMeta({
+    title: "Projects & Portfolio | THE REALM",
+    description:
+      "Explore projects across artificial intelligence, machine learning, automation, web development and cybersecurity, with links to their GitHub repositories.",
+  });
 
+  const [activeFilter, setActiveFilter] = useState("ALL");
   const [showAll, setShowAll] = useState(false);
 
   const filteredProjects = projects.filter(
@@ -185,75 +190,59 @@ export default function Projects() {
                 key={filter}
                 type="button"
                 className={`project-filter ${
-                  filter === activeFilter
-                    ? "active"
-                    : ""
+                  filter === activeFilter ? "active" : ""
                 }`}
-                aria-pressed={
-                  filter === activeFilter
-                }
-                onClick={() =>
-                  changeFilter(filter)
-                }
+                aria-pressed={filter === activeFilter}
+                onClick={() => changeFilter(filter)}
               >
-                {filter === "ALL"
-                  ? "All Projects"
-                  : filter}
+                {filter === "ALL" ? "All Projects" : filter}
               </button>
             ))}
           </div>
 
           <div className="projects-grid">
-            {visibleProjects.map(
-              (project, index) => (
-                <article
-                  key={project.link}
-                  className="project-card realm-reveal"
-                  style={{
-                    "--reveal-delay": `${
-                      (index % 3) * 120
-                    }ms`,
-                  }}
+            {visibleProjects.map((project, index) => (
+              <article
+                key={project.link}
+                className="project-card realm-reveal"
+                style={{
+                  "--reveal-delay": `${(index % 3) * 120}ms`,
+                }}
+              >
+                <div
+                  className={`project-visual ${project.className}`}
                 >
-                  <div
-                    className={`project-visual ${project.className}`}
+                  <div className="project-symbol">
+                    {project.symbol}
+                  </div>
+
+                  <div className="project-visual-circle" />
+                </div>
+
+                <div className="project-info">
+                  <span>{project.category}</span>
+
+                  <h3>{project.title}</h3>
+
+                  <p>{project.description}</p>
+
+                  <p className="project-owner">
+                    By {project.owner}
+                  </p>
+
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                    aria-label={`View ${project.title} on GitHub`}
                   >
-                    <div className="project-symbol">
-                      {project.symbol}
-                    </div>
-
-                    <div className="project-visual-circle" />
-                  </div>
-
-                  <div className="project-info">
-                    <span>
-                      {project.category}
-                    </span>
-
-                    <h3>{project.title}</h3>
-
-                    <p>
-                      {project.description}
-                    </p>
-
-                    <p className="project-owner">
-                      By {project.owner}
-                    </p>
-
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      View on GitHub
-                      <ArrowUpRight size={17} />
-                    </a>
-                  </div>
-                </article>
-              )
-            )}
+                    View on GitHub
+                    <ArrowUpRight size={17} />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
 
           {filteredProjects.length > 6 && (

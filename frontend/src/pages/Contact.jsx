@@ -1,4 +1,4 @@
-
+﻿
 import { useState } from "react";
 import {
   ArrowUpRight,
@@ -7,13 +7,13 @@ import {
   Send,
 } from "lucide-react";
 
-import { PageIntro } from "./shared";
+import { PageIntro } from "./Shared";
+import usePageMeta from "../usePageMeta";
 
-const CONTACT_EMAIL =
-  "therealm.international@gmail.com";
+const CONTACT_EMAIL = "therealm.international@gmail.com";
 
-const API_URL =
-  "http://localhost:5000/api/contact";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000").replace(/\/+$/, "");
+const API_URL = `${API_BASE_URL}/api/contact`;
 
 const emptyForm = {
   name: "",
@@ -23,12 +23,16 @@ const emptyForm = {
 };
 
 export default function Contact() {
+  usePageMeta({
+    title: "Contact THE REALM | Start a Project Conversation",
+    description:
+      "Contact THE REALM about AI, automation, web development or a potential collaboration. Share your project idea through our contact form.",
+  });
+
   const [form, setForm] = useState(emptyForm);
   const [status, setStatus] = useState("");
-  const [isSubmitting, setIsSubmitting] =
-    useState(false);
-  const [isSuccess, setIsSuccess] =
-    useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -72,8 +76,7 @@ export default function Contact() {
 
       if (!response.ok || !result.success) {
         throw new Error(
-          result.message ||
-            "Unable to send your message."
+          result.message || "Unable to send your message."
         );
       }
 
@@ -85,10 +88,7 @@ export default function Contact() {
       setIsSuccess(true);
       setForm(emptyForm);
     } catch (error) {
-      console.error(
-        "Contact form error:",
-        error
-      );
+      console.error("Contact form error:", error);
 
       setStatus(
         error.message === "Failed to fetch"
@@ -131,10 +131,7 @@ export default function Contact() {
               "Explore technology solutions",
               "Start a meaningful collaboration",
             ].map((text) => (
-              <div
-                className="contact-feature"
-                key={text}
-              >
+              <div className="contact-feature" key={text}>
                 <CheckCircle2 size={21} />
                 <span>{text}</span>
               </div>
@@ -149,7 +146,7 @@ export default function Contact() {
                 <span>Email Us</span>
 
                 <a
-                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`}
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT_EMAIL)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-email-link"
@@ -158,9 +155,7 @@ export default function Contact() {
                   <ArrowUpRight size={16} />
                 </a>
 
-                <span>
-                  Click to write us an email
-                </span>
+                <span>Click to write us an email</span>
               </div>
             </div>
           </div>
@@ -172,15 +167,12 @@ export default function Contact() {
             <h3>Send Us a Message</h3>
 
             <p>
-              We'd love to hear what you're
-              working on.
+              We'd love to hear what you're working on.
             </p>
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="name">
-                  Your Name
-                </label>
+                <label htmlFor="name">Your Name</label>
 
                 <input
                   id="name"
@@ -196,9 +188,7 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">
-                  Email Address
-                </label>
+                <label htmlFor="email">Email Address</label>
 
                 <input
                   id="email"
@@ -215,9 +205,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="service">
-                Interested In
-              </label>
+              <label htmlFor="service">Interested In</label>
 
               <select
                 id="service"
@@ -226,36 +214,17 @@ export default function Contact() {
                 onChange={handleChange}
                 required
               >
-                <option value="">
-                  Select a service
-                </option>
-
-                <option value="AI">
-                  Artificial Intelligence
-                </option>
-
-                <option value="Web">
-                  Web Development
-                </option>
-
-                <option value="Automation">
-                  Automation
-                </option>
-
-                <option value="Software">
-                  Software Development
-                </option>
-
-                <option value="Other">
-                  Other / Collaboration
-                </option>
+                <option value="">Select a service</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="Web">Web Development</option>
+                <option value="Automation">Automation</option>
+                <option value="Software">Software Development</option>
+                <option value="Other">Other / Collaboration</option>
               </select>
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">
-                Your Message
-              </label>
+              <label htmlFor="message">Your Message</label>
 
               <textarea
                 id="message"
@@ -274,10 +243,7 @@ export default function Contact() {
               className="btn btn-primary form-submit"
               disabled={isSubmitting}
             >
-              {isSubmitting
-                ? "Sending..."
-                : "Send Message"}
-
+              {isSubmitting ? "Sending..." : "Send Message"}
               <Send size={18} />
             </button>
 
@@ -287,9 +253,7 @@ export default function Contact() {
                 role="status"
                 aria-live="polite"
                 style={{
-                  color: isSuccess
-                    ? "#22c55e"
-                    : undefined,
+                  color: isSuccess ? "#22c55e" : undefined,
                 }}
               >
                 {status}
@@ -301,3 +265,4 @@ export default function Contact() {
     </>
   );
 }
+

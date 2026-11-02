@@ -1,4 +1,5 @@
-
+﻿
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -9,10 +10,17 @@ import {
   Globe2,
 } from "lucide-react";
 
-import Hero3D from "../components/Hero3D";
-import { CTA, FeatureCard } from "./shared";
+const Hero3D = lazy(() => import("../components/Hero3D"));
+import { CTA, FeatureCard } from "./Shared";
+import usePageMeta from "../usePageMeta";
 
 export default function Home() {
+  usePageMeta({
+    title: "THE REALM | AI, Automation & Web Development",
+    description:
+      "Explore THE REALM's AI, automation and web development services. Discover practical technology solutions and digital experiences built around your ideas.",
+  });
+
   return (
     <>
       <section className="hero" id="home">
@@ -66,7 +74,9 @@ export default function Home() {
           </div>
 
           <div className="hero-visual">
+            <Suspense fallback={<div className="hero-3d-container" aria-label="Loading 3D experience" />}>
             <Hero3D />
+          </Suspense>
           </div>
         </div>
       </section>
@@ -130,3 +140,4 @@ export default function Home() {
     </>
   );
 }
+

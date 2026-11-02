@@ -1,4 +1,4 @@
-
+﻿
 import {
   Clock3,
   Mail,
@@ -12,9 +12,17 @@ import {
   PageIntro,
   CTA,
   FeatureCard,
-} from "./shared";
+} from "./Shared";
+
+import usePageMeta from "../usePageMeta";
 
 export default function Support() {
+  usePageMeta({
+    title: "Support & Project Inquiries | THE REALM",
+    description:
+      "Contact THE REALM for project questions, requirements and follow-up inquiries. Submit your message through our online contact form at any time.",
+  });
+
   return (
     <>
       <PageIntro
