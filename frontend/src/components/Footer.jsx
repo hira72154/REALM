@@ -28,6 +28,7 @@ export default function Footer() {
           <Link to="/services">Services</Link>
           <Link to="/support">24/7 Services</Link>
           <Link to="/projects">Projects</Link>
+          <Link to="/privacy-policy">Privacy Policy</Link>
         </div>
 
         <div>
