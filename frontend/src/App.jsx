@@ -24,7 +24,7 @@ import usePageMeta from "./usePageMeta";
 import "./App.css";
 import "./pages.css";
 
-// Load each page only when it is needed.
+// Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
@@ -47,11 +47,13 @@ function ScrollToTop() {
   return null;
 }
 
+// Custom 404 page
 function NotFound() {
   usePageMeta({
     title: "Page Not Found | THE REALM",
     description:
       "The page you are looking for could not be found. Visit THE REALM homepage to explore our AI, automation and web development services.",
+    robots: "noindex, follow",
   });
 
   return (

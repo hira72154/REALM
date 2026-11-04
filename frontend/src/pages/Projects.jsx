@@ -13,7 +13,7 @@ const projects = [
     category: "AUTOMATION",
     title: "N8N File Automation",
     description:
-      "Automates file-processing workflows to reduce repetitive manual tasks.",
+      "An n8n file automation project designed to streamline file-processing workflows and reduce repetitive manual tasks.",
     className: "project-cyan",
     symbol: "⚡",
     owner: "Noor Alishba Sajid",
@@ -23,7 +23,7 @@ const projects = [
     category: "WEB DEVELOPMENT",
     title: "IQ Web Project",
     description:
-      "A web development project showcasing practical website development skills.",
+      "A web development project showcasing practical website development and digital interface implementation.",
     className: "project-purple",
     symbol: "</>",
     owner: "Noor Alishba Sajid",
@@ -33,7 +33,7 @@ const projects = [
     category: "CYBERSECURITY",
     title: "SOC-Aid",
     description:
-      "A cybersecurity-focused project exploring security operations support.",
+      "A cybersecurity project exploring security operations support and approaches to security-related challenges.",
     className: "project-blue",
     symbol: "SOC",
     owner: "Noor Alishba Sajid",
@@ -43,7 +43,7 @@ const projects = [
     category: "AI/ML",
     title: "AI/ML Internship Projects",
     description:
-      "A collection of practical projects related to artificial intelligence and machine learning.",
+      "A collection of practical artificial intelligence and machine learning projects developed through internship tasks.",
     className: "project-blue",
     symbol: "AI",
     owner: "Noor Alishba Sajid",
@@ -53,7 +53,7 @@ const projects = [
     category: "AI/ML",
     title: "Decode Labs Tasks",
     description:
-      "Practical development tasks exploring AI tools and intelligent applications.",
+      "Practical AI development tasks exploring intelligent applications and AI-powered tools.",
     className: "project-purple",
     symbol: "DL",
     owner: "Noor Alishba Sajid",
@@ -63,7 +63,7 @@ const projects = [
     category: "WEB DEVELOPMENT",
     title: "IQ Internship 241",
     description:
-      "A collection of internship tasks and development work.",
+      "A collection of web development and programming tasks completed as part of an internship.",
     className: "project-cyan",
     symbol: "</>",
     owner: "Noor Alishba Sajid",
@@ -73,7 +73,7 @@ const projects = [
     category: "WEB DEVELOPMENT",
     title: "Cup and Comfort",
     description:
-      "A themed web project focused on presenting a product or brand online.",
+      "A themed website project focused on presenting a product concept and creating a dedicated online brand experience.",
     className: "project-purple",
     symbol: "C&C",
     owner: "Noor Alishba Sajid",
@@ -83,7 +83,7 @@ const projects = [
     category: "WEB DEVELOPMENT",
     title: "Scentoria",
     description:
-      "A fragrance-themed website with a dedicated product and brand experience.",
+      "A fragrance-themed website project featuring a dedicated product presentation and brand-focused digital experience.",
     className: "project-purple",
     symbol: "S",
     owner: "Hira Nadeem",
@@ -93,7 +93,7 @@ const projects = [
     category: "CYBERSECURITY",
     title: "Vulnerability Triage Agent",
     description:
-      "An AI-oriented security project focused on organizing and prioritizing vulnerability findings.",
+      "An AI-oriented cybersecurity project focused on organizing and prioritizing vulnerability findings.",
     className: "project-blue",
     symbol: "VT",
     owner: "Hira Nadeem",
@@ -103,7 +103,7 @@ const projects = [
     category: "AUTOMATION",
     title: "Universal CSV Automation",
     description:
-      "Processes CSV files, cleans records, removes duplicates and generates structured output.",
+      "A CSV automation project that processes data files, cleans records, removes duplicates and generates structured output.",
     className: "project-cyan",
     symbol: "CSV",
     owner: "Hira Nadeem",
@@ -113,7 +113,7 @@ const projects = [
     category: "AI/ML",
     title: "Decode Labs",
     description:
-      "An AI project collection featuring chatbot, image-generation and content-writing tools.",
+      "An artificial intelligence project collection featuring chatbot, image-generation and content-writing applications.",
     className: "project-purple",
     symbol: "AI",
     owner: "Hira Nadeem",
@@ -123,7 +123,7 @@ const projects = [
     category: "AI/ML",
     title: "Inquisitors AI",
     description:
-      "An AI project collection featuring chatbot and interview-system development.",
+      "An AI development project featuring chatbot and interview-system applications.",
     className: "project-blue",
     symbol: "IQ",
     owner: "Hira Nadeem",
@@ -133,7 +133,7 @@ const projects = [
     category: "AI/ML",
     title: "IQ Internship 260",
     description:
-      "An internship repository containing practical development work.",
+      "An internship repository containing practical programming and technology development work.",
     className: "project-cyan",
     symbol: "260",
     owner: "Hira Nadeem",
@@ -151,9 +151,9 @@ const filters = [
 
 export default function Projects() {
   usePageMeta({
-    title: "Projects & Portfolio | THE REALM",
+    title: "AI, Automation & Web Development Projects | THE REALM",
     description:
-      "Explore projects across artificial intelligence, machine learning, automation, web development and cybersecurity, with links to their GitHub repositories.",
+      "Explore THE REALM's project portfolio featuring artificial intelligence, machine learning, workflow automation, web development and cybersecurity projects with GitHub links.",
   });
 
   const [activeFilter, setActiveFilter] = useState("ALL");
@@ -177,14 +177,20 @@ export default function Projects() {
   return (
     <>
       <PageIntro
-        eyebrow="OUR PORTFOLIO"
-        title="Ideas We're Exploring."
-        description="Browse projects across AI, automation, web development and cybersecurity."
+        eyebrow="OUR PROJECT PORTFOLIO"
+        title="Explore Our Technology Projects"
+        description="Discover practical projects across artificial intelligence, machine learning, workflow automation, web development and cybersecurity. Explore our work and visit the linked GitHub repositories."
       />
 
-      <section className="section projects-section">
+      <section
+        className="section projects-section"
+        aria-label="Artificial intelligence, automation, web development and cybersecurity projects"
+      >
         <div className="container">
-          <div className="projects-filters realm-reveal">
+          <div
+            className="projects-filters realm-reveal"
+            aria-label="Filter projects by category"
+          >
             {filters.map((filter) => (
               <button
                 key={filter}
@@ -211,6 +217,7 @@ export default function Projects() {
               >
                 <div
                   className={`project-visual ${project.className}`}
+                  aria-hidden="true"
                 >
                   <div className="project-symbol">
                     {project.symbol}
@@ -235,7 +242,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-link"
-                    aria-label={`View ${project.title} on GitHub`}
+                    aria-label={`View ${project.title} GitHub repository`}
                   >
                     View on GitHub
                     <ArrowUpRight size={17} />
@@ -264,8 +271,8 @@ export default function Projects() {
           )}
 
           <p className="projects-note">
-            Explore our work through the linked
-            GitHub repositories.
+            Explore our work and technical implementations
+            through the linked GitHub repositories.
           </p>
         </div>
       </section>

@@ -11,14 +11,15 @@ import {
 } from "lucide-react";
 
 const Hero3D = lazy(() => import("../components/Hero3D"));
+
 import { CTA, FeatureCard } from "./Shared";
 import usePageMeta from "../usePageMeta";
 
 export default function Home() {
   usePageMeta({
-    title: "THE REALM | AI, Automation & Web Development",
+    title: "THE REALM | AI Solutions, Automation & Web Development",
     description:
-      "Explore THE REALM's AI, automation and web development services. Discover practical technology solutions and digital experiences built around your ideas.",
+      "THE REALM helps businesses grow worldwide with AI solutions, intelligent automation and professional web development. Explore our digital services.",
   });
 
   return (
@@ -35,15 +36,16 @@ export default function Home() {
             </div>
 
             <h1>
-              Building the
+              AI Solutions, Automation & Web Development
               <br />
-              <span>Future Together.</span>
+              <span>Building the Future Together.</span>
             </h1>
 
             <p>
-              Welcome to THE REALM — where creativity,
-              artificial intelligence and technology
-              come together to turn ambitious ideas
+              Welcome to THE REALM — your technology partner
+              for artificial intelligence, intelligent automation
+              and professional web development. We bring creativity
+              and technology together to turn ambitious ideas
               into meaningful digital experiences.
             </p>
 
@@ -74,9 +76,16 @@ export default function Home() {
           </div>
 
           <div className="hero-visual">
-            <Suspense fallback={<div className="hero-3d-container" aria-label="Loading 3D experience" />}>
-            <Hero3D />
-          </Suspense>
+            <Suspense
+              fallback={
+                <div
+                  className="hero-3d-container"
+                  aria-label="Loading 3D experience"
+                />
+              }
+            >
+              <Hero3D />
+            </Suspense>
           </div>
         </div>
       </section>
@@ -89,34 +98,34 @@ export default function Home() {
             </span>
 
             <h2>
-              Where Ideas Become Possibilities.
+              Technology Solutions Designed for Growth
             </h2>
 
             <p>
-              We bring a practical, curious and
-              collaborative approach to digital
-              challenges.
+              We combine innovative thinking, practical technology
+              and human collaboration to help businesses explore
+              new possibilities and solve real digital challenges.
             </p>
           </div>
 
           <div className="realm-features-grid">
             <FeatureCard
               icon={BrainCircuit}
-              title="Intelligent Thinking"
-              description="AI-informed ideas focused on real problems."
+              title="Intelligent AI Solutions"
+              description="Explore AI-powered approaches that help address real business challenges."
             />
 
             <FeatureCard
               icon={Rocket}
-              title="Built for Progress"
-              description="Thoughtful solutions that can evolve with your needs."
+              title="Smart Automation"
+              description="Discover automation opportunities that can simplify workflows and support business progress."
               delay={130}
             />
 
             <FeatureCard
               icon={Globe2}
-              title="Human Collaboration"
-              description="Technology works best when people build together."
+              title="Professional Web Development"
+              description="Build meaningful digital experiences through thoughtful and modern web solutions."
               delay={260}
             />
           </div>
@@ -135,9 +144,8 @@ export default function Home() {
 
       <CTA
         title="Your Next Big Idea Starts Here."
-        description="Explore what we can create together — from AI and automation to digital experiences."
+        description="Explore what we can create together — from AI solutions and automation to professional web development."
       />
     </>
   );
 }
-

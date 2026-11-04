@@ -18,20 +18,23 @@ import { services } from "../data/services";
 
 export default function Services() {
   usePageMeta({
-    title: "AI, Automation & Web Development Services | THE REALM",
+    title: "AI & Automation Services | Web Development | THE REALM",
     description:
-      "Explore THE REALM's technology services, including artificial intelligence, workflow automation and responsive web development for practical digital needs.",
+      "Discover THE REALM's AI solutions, intelligent workflow automation and professional web development services. Explore practical technology solutions for businesses worldwide.",
   });
 
   return (
     <>
       <PageIntro
-        eyebrow="WHAT WE DO"
-        title="Solutions Built for Tomorrow."
-        description="Explore our technology services and discover how the right tools can support your next idea."
+        eyebrow="OUR TECHNOLOGY SERVICES"
+        title="AI, Automation & Web Development Solutions"
+        description="Explore THE REALM's technology services, from artificial intelligence and business process automation to professional web development. We help turn ideas into practical digital solutions."
       />
 
-      <section className="section services-section">
+      <section
+        className="section services-section"
+        aria-label="Our technology services"
+      >
         <div className="container">
           <div className="services-grid">
             {services.map((service, index) => {
@@ -57,14 +60,18 @@ export default function Services() {
                     </span>
                   </div>
 
-                  <h3>{service.title}</h3>
+                  <h2>{service.title}</h2>
+
                   <p>{service.description}</p>
 
                   <p className="realm-service-detail">
                     {service.detail}
                   </p>
 
-                  <Link to="/contact">
+                  <Link
+                    to="/contact"
+                    aria-label={`Enquire about ${service.title}`}
+                  >
                     Enquire About This Service
                     <ArrowUpRight size={17} />
                   </Link>
@@ -75,34 +82,45 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section">
+      <section
+        className="section"
+        aria-label="Our technology development process"
+      >
         <div className="container">
           <div className="section-heading realm-reveal">
             <span className="eyebrow">
               OUR APPROACH
             </span>
 
-            <h2>From Concept to Creation.</h2>
+            <h2>
+              From Concept to Creation
+            </h2>
+
+            <p>
+              Our approach focuses on understanding your
+              requirements, developing practical technology
+              solutions and continuously improving the results.
+            </p>
           </div>
 
           <div className="realm-features-grid">
             <FeatureCard
               icon={Search}
               title="01 · Discover"
-              description="Understand your goals, audience and challenges."
+              description="Understand your business goals, target audience, requirements and digital challenges."
             />
 
             <FeatureCard
               icon={Wrench}
               title="02 · Build"
-              description="Design and develop the right practical solution."
+              description="Plan, design and develop AI, automation or web solutions around your actual needs."
               delay={130}
             />
 
             <FeatureCard
               icon={Rocket}
               title="03 · Improve"
-              description="Test, refine and prepare for real use."
+              description="Test, refine and improve solutions to prepare them for practical business use."
               delay={260}
             />
           </div>

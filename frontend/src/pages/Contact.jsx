@@ -12,7 +12,12 @@ import usePageMeta from "../usePageMeta";
 
 const CONTACT_EMAIL = "therealm.international@gmail.com";
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000").replace(/\/+$/, "");
+// Production backend URL
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://realm-backend.vercel.app"
+).replace(/\/+$/, "");
+
 const API_URL = `${API_BASE_URL}/api/contact`;
 
 const emptyForm = {
@@ -24,9 +29,9 @@ const emptyForm = {
 
 export default function Contact() {
   usePageMeta({
-    title: "Contact THE REALM | Start a Project Conversation",
+    title: "Contact THE REALM | AI, Automation & Web Development",
     description:
-      "Contact THE REALM about AI, automation, web development or a potential collaboration. Share your project idea through our contact form.",
+      "Contact THE REALM for AI solutions, business automation, software development and professional web development services. Share your project requirements and explore worldwide collaboration opportunities.",
   });
 
   const [form, setForm] = useState(emptyForm);
@@ -92,7 +97,7 @@ export default function Contact() {
 
       setStatus(
         error.message === "Failed to fetch"
-          ? "Could not connect to the server. Make sure the backend is running."
+          ? "Could not connect to the server. Please try again later."
           : error.message ||
               "Something went wrong. Please try again."
       );
@@ -104,12 +109,15 @@ export default function Contact() {
   return (
     <>
       <PageIntro
-        eyebrow="GET IN TOUCH"
+        eyebrow="CONTACT THE REALM"
         title="Have an Idea? Let's Build It."
-        description="Tell us about your project or ask about a collaboration. We'd love to hear what you're working on."
+        description="Looking for AI solutions, business automation or professional web development? Tell us about your project, share your requirements or explore a potential collaboration with our team."
       />
 
-      <section className="section contact-section">
+      <section
+        className="section contact-section"
+        aria-label="Contact THE REALM"
+      >
         <div className="container contact-grid">
           <div className="contact-content realm-reveal">
             <span className="eyebrow">
@@ -122,14 +130,15 @@ export default function Contact() {
             </h2>
 
             <p>
-              Share your goals and we'll explore
-              how technology can help.
+              Share your business goals, project requirements
+              or ideas. Let's explore how artificial intelligence,
+              automation and modern technology can help.
             </p>
 
             {[
               "Tell us about your project",
               "Explore technology solutions",
-              "Start a meaningful collaboration",
+              "Discuss business opportunities",
             ].map((text) => (
               <div className="contact-feature" key={text}>
                 <CheckCircle2 size={21} />
@@ -150,6 +159,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-email-link"
+                  aria-label="Email THE REALM"
                 >
                   {CONTACT_EMAIL}
                   <ArrowUpRight size={16} />
@@ -164,10 +174,11 @@ export default function Contact() {
             className="contact-form realm-reveal"
             onSubmit={handleSubmit}
           >
-            <h3>Send Us a Message</h3>
+            <h2>Send Us a Message</h2>
 
             <p>
-              We'd love to hear what you're working on.
+              Tell us what you're working on and how we
+              can help.
             </p>
 
             <div className="form-row">
@@ -215,11 +226,21 @@ export default function Contact() {
                 required
               >
                 <option value="">Select a service</option>
-                <option value="AI">Artificial Intelligence</option>
-                <option value="Web">Web Development</option>
-                <option value="Automation">Automation</option>
-                <option value="Software">Software Development</option>
-                <option value="Other">Other / Collaboration</option>
+                <option value="AI">
+                  Artificial Intelligence
+                </option>
+                <option value="Web">
+                  Web Development
+                </option>
+                <option value="Automation">
+                  Business Automation
+                </option>
+                <option value="Software">
+                  Software Development
+                </option>
+                <option value="Other">
+                  Other / Collaboration
+                </option>
               </select>
             </div>
 
@@ -230,7 +251,7 @@ export default function Contact() {
                 id="message"
                 name="message"
                 rows="5"
-                placeholder="Tell us about your project..."
+                placeholder="Tell us about your project and requirements..."
                 value={form.message}
                 onChange={handleChange}
                 maxLength={3000}
@@ -265,4 +286,3 @@ export default function Contact() {
     </>
   );
 }
-

@@ -1,6 +1,11 @@
-﻿import { useEffect } from "react";
+﻿
+import { useEffect } from "react";
 
-export default function usePageMeta({ title, description }) {
+export default function usePageMeta({
+  title,
+  description,
+  robots = "index, follow",
+}) {
   useEffect(() => {
     if (title) {
       document.title = title;
@@ -36,5 +41,25 @@ export default function usePageMeta({ title, description }) {
     setMeta("property", "og:type", "website");
     setMeta("property", "og:site_name", "THE REALM");
     setMeta("name", "twitter:card", "summary");
-  }, [title, description]);
+
+    // Canonical URL
+    let canonical = document.head.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute(
+      "href",
+      `https://therealminternational.com${window.location.pathname}`
+    );
+
+    // Robots directive
+    setMeta("name", "robots", robots);
+
+  }, [title, description, robots]);
 }

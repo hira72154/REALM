@@ -1,2 +1,5 @@
+
 User-agent: *
 Allow: /
+
+Sitemap: https://therealminternational.com/sitemap.xml

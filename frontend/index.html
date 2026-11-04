@@ -1,19 +1,22 @@
-﻿<!doctype html>
+﻿
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Basic SEO -->
     <meta name="theme-color" content="#101820" />
     <meta name="robots" content="index, follow" />
 
     <meta
       name="description"
-      content="Explore THE REALM's AI, automation and web development services. Discover practical technology solutions and digital experiences built around your ideas."
+      content="THE REALM delivers AI solutions, intelligent automation and professional web development to help businesses grow through technology."
     />
 
     <title>THE REALM | AI, Automation & Web Development</title>
 
+    <!-- Open Graph: Facebook, LinkedIn and Social Sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="THE REALM" />
     <meta
@@ -22,9 +25,14 @@
     />
     <meta
       property="og:description"
-      content="Explore THE REALM's AI, automation and web development services. Discover practical technology solutions and digital experiences built around your ideas."
+      content="Explore AI solutions, intelligent automation and professional web development services by THE REALM."
+    />
+    <meta
+      property="og:url"
+      content="https://therealminternational.com/"
     />
 
+    <!-- Twitter / X Sharing -->
     <meta name="twitter:card" content="summary" />
     <meta
       name="twitter:title"
@@ -32,14 +40,48 @@
     />
     <meta
       name="twitter:description"
-      content="Explore THE REALM's AI, automation and web development services. Discover practical technology solutions and digital experiences built around your ideas."
+      content="Explore AI solutions, intelligent automation and professional web development services by THE REALM."
     />
 
+    <!-- Website Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
+
+    <!-- Schema Markup: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://therealminternational.com/#organization",
+        "name": "THE REALM",
+        "url": "https://therealminternational.com/",
+        "logo": "https://therealminternational.com/logo.png",
+        "description": "THE REALM provides AI solutions, intelligent automation and professional web development services to help businesses grow through technology.",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      }
+    </script>
+
+    <!-- Schema Markup: Website -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://therealminternational.com/#website",
+        "name": "THE REALM",
+        "url": "https://therealminternational.com/",
+        "publisher": {
+          "@id": "https://therealminternational.com/#organization"
+        },
+        "inLanguage": "en"
+      }
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
