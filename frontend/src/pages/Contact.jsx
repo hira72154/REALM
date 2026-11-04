@@ -91,7 +91,25 @@ export default function Contact() {
       );
 
       setIsSuccess(true);
+
+      // GA4: Track successful lead generation
+      try {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            method: "contact_form",
+            service_type: form.service || "unspecified",
+          });
+        }
+      } catch (analyticsError) {
+        console.warn(
+          "GA4 tracking error:",
+          analyticsError
+        );
+      }
+
+      // Reset form after successful submission
       setForm(emptyForm);
+
     } catch (error) {
       console.error("Contact form error:", error);
 
@@ -101,6 +119,7 @@ export default function Contact() {
           : error.message ||
               "Something went wrong. Please try again."
       );
+
     } finally {
       setIsSubmitting(false);
     }
@@ -119,6 +138,7 @@ export default function Contact() {
         aria-label="Contact THE REALM"
       >
         <div className="container contact-grid">
+
           <div className="contact-content realm-reveal">
             <span className="eyebrow">
               START A CONVERSATION
@@ -281,6 +301,7 @@ export default function Contact() {
               </p>
             )}
           </form>
+
         </div>
       </section>
     </>
