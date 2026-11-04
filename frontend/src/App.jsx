@@ -32,7 +32,9 @@ const Support = lazy(() => import("./pages/Support"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
 
+// Scroll to top when changing pages
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -87,6 +89,7 @@ function NotFound() {
   );
 }
 
+// Website page routes
 function PageRoutes() {
   const location = useLocation();
 
@@ -115,10 +118,17 @@ function PageRoutes() {
           <Route path="/support" element={<Support />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route
             path="/privacy-policy"
             element={<Privacy />}
           />
+
+          <Route
+            path="/terms"
+            element={<Terms />}
+          />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
@@ -126,6 +136,7 @@ function PageRoutes() {
   );
 }
 
+// Main App
 export default function App() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem("realm-theme");
